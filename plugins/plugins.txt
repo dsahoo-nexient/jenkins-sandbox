@@ -1,0 +1,11 @@
+configuration-as-code:1.51
+pipeline-utility-steps:2.7.1
+generic-webhook-trigger:1.72
+job-dsl:1.77
+jobConfigHistory:2.27
+#workflow-cps-global-lib:2.19
+docker-plugin:1.2.2
+amazon-ecs:1.38
+amazon-ecr:1.6
+workflow-aggregator:2.6
+# skip-certification-check:1.0

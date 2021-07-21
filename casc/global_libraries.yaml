@@ -1,0 +1,6 @@
+unclassified:
+  globalLibraries:
+    libraries:
+      - name: "jenkins-shared-libraries"
+        defaultVersion: 1.0.0
+        implicit: false

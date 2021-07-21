@@ -1,0 +1,7 @@
+jenkins:
+  systemMessage: "Welcome to Jenkins"
+  numExecutors: 1
+unclassified:
+  location:
+    adminAddress: dsahoo@nexient.com
+    url: http://localhost:8080

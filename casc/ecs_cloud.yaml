@@ -1,0 +1,42 @@
+jenkins:
+  clouds:
+    - ecs:
+        name: ecs-cloud
+        assumedRoleArn: ""
+        cluster: "arn:aws:ecs:${AWS_REGION}:${AWS_ACCOUNT_NUMBER}:cluster/jenkins-cluster"
+        credentialsId: "aws-credentials"
+        jenkinsUrl: "https://jenkins.dsahoo.com"
+        maxCpu: 0
+        maxMemory: 0
+        maxMemoryReservation: 0
+        regionName: ${AWS_REGION}
+        retainAgents: false
+        retentionTimeout: 120
+        slaveTimeoutInSeconds: 120
+        taskPollingIntervalInSeconds: 1
+        tunnel: "jenkins-service.service:50000"
+        templates:
+          - templateName: jenkins-slave-ecs-1
+            assignPublicIp: true
+            containerUser: ""
+            cpu: 1024
+            defaultCapacityProvider: false
+            dnsSearchDomains: ""
+            dynamicTaskDefinition: ""
+            environments: []
+            executionRole: "arn:aws:iam::${AWS_ACCOUNT_NUMBER}:role/ecsTaskExecutionRole"
+            image: "jenkins/inbound-agent:alpine"
+            label: "ecs"
+            launchType: "FARGATE"
+            memory: 0
+            memoryReservation: 2048
+            networkMode: awsvpc
+            platformVersion: "LATEST"
+            portMappings: []
+            privileged: false
+            securityGroups: "sg-066548becb46dd2ca"
+            subnets: "subnet-f3c6dc89,subnet-5bf9bb17,subnet-ef8f2384"
+            taskRole: "arn:aws:iam::${AWS_ACCOUNT_NUMBER}:role/ecsTaskExecutionRole"
+            remoteFSRoot: "/home/jenkins"
+
+
