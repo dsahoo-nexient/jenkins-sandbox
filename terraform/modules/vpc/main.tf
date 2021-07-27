@@ -1,8 +1,3 @@
-provider "aws" {
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
-  region = var.aws_region
-}
 
 locals {
   subnet_cidrs = ["10.1.3.0/24", "10.1.1.0/24", "10.1.2.0/24"]

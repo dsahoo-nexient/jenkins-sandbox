@@ -7,7 +7,7 @@ variable "secret_json" {
 }
 
 resource "aws_secretsmanager_secret" "tf_secrets_store" {
-  name = "terraform-secrets-store"
+  name_prefix = "terraform-secrets-store"
 }
 
 resource "aws_secretsmanager_secret_version" "tf-secrets" {
