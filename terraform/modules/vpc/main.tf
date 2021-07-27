@@ -75,18 +75,3 @@ resource "aws_security_group_rule" "http_8080" {
   cidr_blocks       = [local.cidr_all]
   security_group_id = aws_security_group.jenkins_sg.id
 }
-
-module "secrets" {
-  source = "./modules/misc"
-  aws_access_key = var.aws_access_key
-  aws_secret_key = var.aws_secret_key
-}
-
-module "ecs_tf" {
-  source = "./modules/ecs"
-  aws_access_key = var.aws_access_key
-  aws_secret_key = var.aws_secret_key
-  tf_secret_arn = module.secrets.secret_arn
-  aws_account_number = var.aws_account_number
-  aws_region = var.aws_region
-}
