@@ -70,3 +70,12 @@ resource "aws_security_group_rule" "http_8080" {
   cidr_blocks       = [local.cidr_all]
   security_group_id = aws_security_group.jenkins_sg.id
 }
+
+resource "aws_security_group_rule" "allow_all" {
+  type              = "egress"
+  to_port           = 0
+  protocol          = "-1"
+  from_port         = 0
+  security_group_id = aws_security_group.jenkins_sg.id
+  cidr_blocks = [local.cidr_all]
+}

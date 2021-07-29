@@ -6,15 +6,11 @@ provider "aws" {
 
 module "vpc_tf" {
   source = "./modules/vpc"
-  aws_access_key = var.aws_access_key
-  aws_secret_key = var.aws_secret_key
   aws_account_number = var.aws_account_number
 }
 
 module "alb_tf" {
   source = "./modules/elb"
-  aws_access_key = var.aws_access_key
-  aws_secret_key = var.aws_secret_key
   aws_account_number = var.aws_account_number
   vpc_id = module.vpc_tf.vpc_id
   subnet_ids = module.vpc_tf.subnet_ids
