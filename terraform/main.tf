@@ -15,6 +15,7 @@ module "alb_tf" {
   vpc_id = module.vpc_tf.vpc_id
   subnet_ids = module.vpc_tf.subnet_ids
   sg_id = module.vpc_tf.sg_id
+  hosted_zone_id = var.route53_hosted_zone_id
 }
 
 module "secrets" {

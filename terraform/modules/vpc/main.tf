@@ -71,6 +71,7 @@ resource "aws_security_group_rule" "http_8080" {
   security_group_id = aws_security_group.jenkins_sg.id
 }
 
+// Very imp to add the egress rule
 resource "aws_security_group_rule" "allow_all" {
   type              = "egress"
   to_port           = 0

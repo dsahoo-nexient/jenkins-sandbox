@@ -1,5 +1,4 @@
 
-
 resource "aws_lb" "jenkins_alb" {
   load_balancer_type = "application"
   internal = false
@@ -13,6 +12,7 @@ resource "aws_lb" "jenkins_alb" {
 
 resource "aws_alb_target_group" "jenkins_tg" {
   name = "jenkins-tg-tf"
+  // maps to the ecs container protocol and port
   protocol = "HTTP"
   port = 8080
   target_type = "ip"
@@ -25,6 +25,7 @@ resource "aws_alb_target_group" "jenkins_tg" {
 
 resource "aws_alb_listener" "jenkins-https-listener" {
   load_balancer_arn = aws_lb.jenkins_alb.arn
+  // incoming traffic port and protocol
   port = 443
   ssl_policy = "ELBSecurityPolicy-2016-08"
   protocol = "HTTPS"
@@ -33,4 +34,13 @@ resource "aws_alb_listener" "jenkins-https-listener" {
     type = "forward"
     target_group_arn = aws_alb_target_group.jenkins_tg.arn
   }
+}
+
+resource "aws_route53_record" "www" {
+  count = var.hosted_zone_id != "" ? 1 : 0
+  zone_id = var.hosted_zone_id
+  name    = "jenkins.dsahoo.com"
+  type    = "CNAME"
+  ttl     = "300"
+  records = [aws_lb.jenkins_alb.dns_name]
 }

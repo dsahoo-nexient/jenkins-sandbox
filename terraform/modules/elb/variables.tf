@@ -11,3 +11,4 @@ variable "vpc_id" {}
 
 variable subnet_ids {}
 variable "sg_id" {}
+variable "hosted_zone_id" {}
