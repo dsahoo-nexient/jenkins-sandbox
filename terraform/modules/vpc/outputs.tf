@@ -5,3 +5,7 @@ output "subnet_ids" {
 output "vpc_id" {
   value = aws_vpc.jenkins_vpc.id
 }
+
+output "sg_id" {
+  value = aws_security_group.jenkins_sg.id
+}

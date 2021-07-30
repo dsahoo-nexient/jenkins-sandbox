@@ -34,3 +34,11 @@ variable "execution_role_arn" {
 variable "tf_secret_arn" {
   type = string
 }
+
+variable "subnet_ids" {}
+
+variable "sg_id" {}
+
+variable "alb_name" {}
+
+variable "tg_arn" {}

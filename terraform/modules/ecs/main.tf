@@ -44,3 +44,31 @@ resource "aws_ecs_task_definition" "jenkins_master" {
   ])
   family = "jenkins-master-tf"
 }
+
+resource "aws_ecs_service" "jenkins_service" {
+  count = 1
+  name = "jenkins-service-tf"
+  cluster = aws_ecs_cluster.jenkins_ecs_cluster.arn
+  deployment_maximum_percent = 200
+  deployment_minimum_healthy_percent = 100
+  desired_count = 1
+  enable_ecs_managed_tags = true
+  force_new_deployment = true
+  launch_type = "FARGATE"
+  network_configuration {
+    subnets = var.subnet_ids
+    security_groups = [var.sg_id]
+    assign_public_ip = true
+  }
+  scheduling_strategy = "REPLICA"
+  tags = {
+    "Terraform": "True"
+  }
+  task_definition = aws_ecs_task_definition.jenkins_master.arn
+  load_balancer {
+    container_name = "${var.app_name}-master"
+    container_port = 8080
+    //elb_name = var.alb_name
+    target_group_arn = var.tg_arn
+  }
+}
